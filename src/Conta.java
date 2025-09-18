@@ -14,6 +14,10 @@ public abstract class Conta implements IConta {
 		this.numero = SEQUENCIAL++;
 		this.cliente = cliente;
 	}
+	public Conta(int agencia, int numero){
+		this.agencia = agencia;
+		this.numero = numero;
+	}
 
 	@Override
 	public void sacar(double valor) {
@@ -49,4 +53,17 @@ public abstract class Conta implements IConta {
 		System.out.println(String.format("Numero: %d", this.numero));
 		System.out.println(String.format("Saldo: %.2f", this.saldo));
 	}
+	@Override
+	public String toString(){
+		return this.agencia + "-" + this.cliente.getNome() + "- %.2f".formatted(this.saldo);
+	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+		if (this == o) return true;
+		if (! (o instanceof Conta)) return false;
+		Conta conta = (Conta) o;
+		return (this.agencia == conta.agencia && this.numero == conta.numero);
+    }
 }

@@ -2,8 +2,7 @@
 public class Main {
 
 	public static void main(String[] args) {
-		Cliente venilton = new Cliente();
-		venilton.setNome("Venilton");
+		Cliente venilton = new Cliente("Venilton");
 		
 		Conta cc = new ContaCorrente(venilton);
 		Conta poupanca = new ContaPoupanca(venilton);
@@ -13,6 +12,14 @@ public class Main {
 		
 		cc.imprimirExtrato();
 		poupanca.imprimirExtrato();
-	}
 
+		Banco banco = new Banco();
+		banco.adicionarContaCorrente(cc);
+		banco.listarContasPorAgencia();
+		banco.listarContasPorCliente();
+
+		banco.adicionarContaCorrente(12, 12, 400, "Ariosvaldo");
+		banco.listarContasPorAgencia();
+		banco.listarContasPorCliente();
+	}
 }
